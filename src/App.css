@@ -1,38 +1,111 @@
-.App {
+.WeatherAppProject {
+  margin: 40px auto;
+  width: 700px;
+  border: 3px solid #52057b;
+  padding: 30px;
+  border-radius: 10px;
+  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+}
+
+.forecast-heading {
+  color: #52057b;
+}
+
+#weather-forecast {
   text-align: center;
+  color: #52057b;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#weather-forecast img {
+  width: 70px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.city {
+  font-size: 50px;
+  padding: 20px 0 0 0;
+  color: #52057b;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.fa-cloud-sun {
+  vertical-align: middle;
 }
 
-.App-link {
-  color: #61dafb;
+.current-date {
+  font-size: 25px;
+  color: #52057b;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.weather-icon {
+  font-size: 300%;
+}
+
+.active {
+  font-weight: bold;
+  color: black;
+}
+
+.active:hover {
+  text-decoration: none;
+  cursor: default;
+  color: black;
+}
+
+.temperature-divider {
+  font-size: 20px;
+}
+
+.min-max-temp {
+  color: #52057b;
+  font-size: 20px;
+  padding-right: 0px;
+  padding-left: 40px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.weather-info {
+  color: #52057b;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.sunrise-sunset {
+  color: #52057b;
+  font-size: 20px;
+  padding-left: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+
+#celsius {
+  font-size: 30px;
+}
+
+#fahrenheit {
+  font-size: 20px;
+}
+
+#current-city {
+  text-transform: capitalize;
+}
+
+#current-weather-icon img {
+  vertical-align: middle;
+  width: 50%;
+}
+
+#temperature-digits {
+  font-size: 70px;
+  font-weight: 350;
+  color: #52057b;
+  vertical-align: middle;
+}
+
+#weather-description {
+  text-transform: capitalize;
+  color: #52057b;
+  vertical-align: middle;
+  padding-left: 30px;
+  font-size: 40px;
 }
