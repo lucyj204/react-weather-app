@@ -1,4 +1,5 @@
 import React from "react";
+import ReactAnimatedWeather from "react-animated-weather";
 import "./App.css";
 
 export default function ForecastItem() {
@@ -9,7 +10,7 @@ export default function ForecastItem() {
         <br />
         <span>14</span>°
         <br />
-        <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" />
+        <ReactAnimatedWeather icon={"RAIN"} color={"#52057b"} />
       </p>
     </div>
   );

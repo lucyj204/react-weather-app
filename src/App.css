@@ -90,9 +90,9 @@
   text-transform: capitalize;
 }
 
-#current-weather-icon img {
+#current-weather-icon canvas {
   vertical-align: middle;
-  width: 50%;
+  /* width: 50%; */
 }
 
 #temperature-digits {

@@ -1,8 +1,41 @@
 import React from "react";
 import "./App.css";
 import ForecastItem from "./ForecastItem";
+import ReactAnimatedWeather from "react-animated-weather";
+import Axios from "axios";
+
+function getWeatherIconFromOpenWeatherMapCode(code) {
+  if (code === "01d") {
+    return "CLEAR_DAY";
+  }
+  if (code === "01n") {
+    return "CLEAR_NIGHT";
+  }
+  if (code === "02d" || code === "04d") {
+    return "PARTLY_CLOUDY_DAY";
+  }
+  if (code === "02n" || code === "03n" || code === "04n") {
+    return "PARTLY_CLOUDY_NIGHT";
+  }
+  if (code === "03d") {
+    return "CLOUDY";
+  }
+  if (code === "09d" || code === "09n" || code === "10d" || code === "10n") {
+    return "RAIN";
+  }
+  if (code === "11d" || "11n") {
+    return "WIND";
+  }
+  if (code === "13d" || code === "13n") {
+    return "SNOW";
+  }
+  if (code === "50d" || code === "50n") {
+    return "FOG";
+  }
+}
 
 export default function WeatherReport() {
+  const currentWeatherCode = "04d";
   return (
     <div id="weather-report">
       <h1 className="city">
@@ -15,7 +48,13 @@ export default function WeatherReport() {
       </p>
       <p className="current-weather">
         <span id="current-weather-icon">
-          <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" />
+          {/* <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" /> */}
+
+          <ReactAnimatedWeather
+            icon={getWeatherIconFromOpenWeatherMapCode(currentWeatherCode)}
+            color={"#52057b"}
+            size={150}
+          />
         </span>
         <span id="temperature-digits"> 11</span>
         <a href="url" className="active" id="celsius">
