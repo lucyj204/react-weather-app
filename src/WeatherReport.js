@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import ForecastItem from "./ForecastItem";
 import ReactAnimatedWeather from "react-animated-weather";
-import Axios from "axios";
 
 function getWeatherIconFromOpenWeatherMapCode(code) {
   if (code === "01d") {
