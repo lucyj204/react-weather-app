@@ -78,6 +78,10 @@
   font-weight: 500;
 }
 
+.coded-by {
+  text-align: center;
+}
+
 #celsius {
   font-size: 30px;
 }

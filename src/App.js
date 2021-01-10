@@ -7,9 +7,17 @@ import WeatherReport from "./WeatherReport";
 
 export default function App() {
   return (
-    <div className="WeatherAppProject">
-      <CitySearch />
-      <WeatherReport />
+    <div>
+      <div className="WeatherAppProject">
+        <CitySearch />
+        <WeatherReport />
+      </div>
+      <p className="coded-by">
+        <a href="https://github.com/lucyj204/react-weather-app">
+          Open-source code{" "}
+        </a>{" "}
+        by Lucy Joyce
+      </p>
     </div>
   );
 }
