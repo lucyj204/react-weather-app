@@ -1,108 +1,90 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
-import ForecastItem from "./ForecastItem";
-import ReactAnimatedWeather from "react-animated-weather";
+import CitySearch from "./CitySearch";
+import axios from "axios";
+import Loader from "react-loader-spinner";
 
-function getWeatherIconFromOpenWeatherMapCode(code) {
-  if (code === "01d") {
-    return "CLEAR_DAY";
-  }
-  if (code === "01n") {
-    return "CLEAR_NIGHT";
-  }
-  if (code === "02d" || code === "04d") {
-    return "PARTLY_CLOUDY_DAY";
-  }
-  if (code === "02n" || code === "03n" || code === "04n") {
-    return "PARTLY_CLOUDY_NIGHT";
-  }
-  if (code === "03d") {
-    return "CLOUDY";
-  }
-  if (code === "09d" || code === "09n" || code === "10d" || code === "10n") {
-    return "RAIN";
-  }
-  if (code === "11d" || "11n") {
-    return "WIND";
-  }
-  if (code === "13d" || code === "13n") {
-    return "SNOW";
-  }
-  if (code === "50d" || code === "50n") {
-    return "FOG";
-  }
-}
+export default function WeatherReport(props) {
+  const [weatherData, setWeatherData] = useState({});
+  const [city, setCity] = useState(props.defaultCity);
+  const searchRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentlyLoadingCity, setCurrentlyLoadingCity] = useState("");
 
-export default function WeatherReport() {
-  const currentWeatherCode = "04d";
+  function handleError(err) {
+    console.log("got an error", err);
+  }
+
+  function handleOpenWeatherMapResponse(response, city) {
+    if (city !== currentlyLoadingCity) {
+      //ignore this response because the user changed the city
+      return;
+    }
+    setWeatherData({
+      currentCity: response.data.name,
+      temperatureCelsius: Math.round(response.data.main.temp),
+      currentWeatherDescription: response.data.weather[0].description,
+      windSpeed: Math.round(response.data.wind.speed),
+      humidity: Math.round(response.data.main.humidity),
+      temperatureMaxCelsius: response.data.main.temp_max,
+      temperatureMinCelsius: response.data.main.temp_min,
+    });
+    setIsLoading(false);
+  }
+
+  if (city !== currentlyLoadingCity) {
+    let apiKey = "997b649cbb1b99a2039a7765681cfecd";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios
+      .get(apiUrl)
+      .then(
+        (response) => handleOpenWeatherMapResponse(response, city),
+        handleError
+      );
+    setCurrentlyLoadingCity(city);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setCity(searchRef.current.value);
+  }
+
   return (
-    <div id="weather-report">
-      <h1 className="city">
-        <span id="current-city"></span> Rochester,
-        <span id="current-country"> UK</span>
-      </h1>
-      <p className="current-date" id="current-date">
-        Sunday 20 December
-        <br /> Last updated at 12:30
-      </p>
-      <p className="current-weather">
-        <span id="current-weather-icon">
-          {/* <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" /> */}
-
-          <ReactAnimatedWeather
-            icon={getWeatherIconFromOpenWeatherMapCode(currentWeatherCode)}
-            color={"#52057b"}
-            size={150}
-          />
-        </span>
-        <span id="temperature-digits"> 11</span>
-        <a href="url" className="active" id="celsius">
-          °C
-        </a>
-        <span className="temperature-divider">|</span>
-        <a href="url" id="fahrenheit">
-          °F
-        </a>
-        <span id="weather-description">Clouds</span>
-      </p>
-      <hr />
-      <div className="container">
+    <div className="CitySearch">
+      <form id="city-form" onSubmit={handleSubmit}>
         <div className="row">
-          <div className="col">
-            <p className="weather-info">
-              Humidity: <span id="humidity">98</span>%
-              <br />
-              Wind: <span id="wind-speed">7</span> m/s
-            </p>
+          <div className="col-6">
+            <input
+              className="form-control"
+              placeholder="Enter a City"
+              id="city-input"
+              autoFocus="on"
+              ref={searchRef}
+            />
           </div>
-
-          <div className="col">
-            <p className="sunrise-sunset">
-              Sunrise: <span id="sunrise-time">07:59</span>
-              <br />
-              Sunset: <span id="sunset-time">15:51</span>
-            </p>
+          <div className="col-3">
+            <input
+              className="form-control btn btn-secondary"
+              type="submit"
+              value="Search"
+              id="search-button"
+            />
           </div>
-
-          <div className="col">
-            <p className="min-max-temp">
-              Min: <span id="min-temp">8</span>°
-              <br />
-              Max: <span id="max-temp">9</span>°
-            </p>
+          <div className="col-3">
+            <input
+              className="form-control btn btn-light"
+              type="submit"
+              value="Current"
+              id="current-city-button"
+            />
           </div>
         </div>
-        <hr />
-        <h3 className="forecast-heading">Forecast</h3>
-        <div className="row" id="weather-forecast">
-          <ForecastItem />
-          <ForecastItem />
-          <ForecastItem />
-          <ForecastItem />
-          <ForecastItem />
-          <ForecastItem />
-        </div>
-      </div>
+      </form>
+      {isLoading ? (
+        <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+      ) : city === "" ? null : (
+        <CitySearch weatherData={weatherData} />
+      )}
     </div>
   );
 }
