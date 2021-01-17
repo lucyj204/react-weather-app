@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef} from "react";
 import "./App.css";
 import CitySearch from "./CitySearch";
 import axios from "axios";
@@ -6,7 +6,7 @@ import Loader from "react-loader-spinner";
 
 export default function WeatherReport(props) {
   const [weatherData, setWeatherData] = useState({});
-  const [city, setCity] = useState(props.defaultCity);
+  const [city, setCity] = useState("");
   const searchRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const [currentlyLoadingCity, setCurrentlyLoadingCity] = useState("");
@@ -16,10 +16,12 @@ export default function WeatherReport(props) {
   }
 
   function handleOpenWeatherMapResponse(response, city) {
-    if (city !== currentlyLoadingCity) {
-      //ignore this response because the user changed the city
-      return;
-    }
+    // if (city !== currentlyLoadingCity) {
+    //   console.log("ignore", {city, currentlyLoadingCity});
+    //   //ignore this response because the user changed the city
+    //   return;
+    // }
+
     setWeatherData({
       currentCity: response.data.name,
       temperatureCelsius: Math.round(response.data.main.temp),
@@ -33,7 +35,7 @@ export default function WeatherReport(props) {
   }
 
   if (city !== currentlyLoadingCity) {
-    let apiKey = "997b649cbb1b99a2039a7765681cfecd";
+    let apiKey = "41c63daacbbca70e4cab465b3c854000";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios
       .get(apiUrl)
