@@ -1,5 +1,6 @@
 import React from "react";
 import ForecastItem from "./ForecastItem";
+import FormatDateAndTime from "./FormatDateAndTime";
 import ReactAnimatedWeather from "react-animated-weather";
 
 
@@ -44,6 +45,7 @@ export default function CitySearch(props) {
           <span id="current-country"> UK</span>
         </h1>
         <p className="current-date" id="current-date">
+          <FormatDateAndTime dateAndTime={props.weatherData.dateAndTime}/>
           Sunday 20 December
           <br /> Last updated at 12:30
         </p>

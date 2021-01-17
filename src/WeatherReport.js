@@ -30,6 +30,7 @@ export default function WeatherReport(props) {
       humidity: Math.round(response.data.main.humidity),
       temperatureMaxCelsius: response.data.main.temp_max,
       temperatureMinCelsius: response.data.main.temp_min,
+      dateAndTime: new Date(response.data.dt * 1000)
     });
     setIsLoading(false);
   }
