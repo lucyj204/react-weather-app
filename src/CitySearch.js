@@ -36,7 +36,7 @@ function getWeatherIconFromOpenWeatherMapCode(code) {
 
 export default function CitySearch(props) {
   const currentWeatherCode = "04d";
-
+console.log("CitySearch",props);
  
     return (
       <div id="weather-report">
@@ -46,8 +46,7 @@ export default function CitySearch(props) {
         </h1>
         <p className="current-date" id="current-date">
           <FormatDateAndTime dateAndTime={props.weatherData.dateAndTime}/>
-          Sunday 20 December
-          <br /> Last updated at 12:30
+          
         </p>
         <p className="current-weather">
           <span id="current-weather-icon">

@@ -5,7 +5,7 @@ import axios from "axios";
 import Loader from "react-loader-spinner";
 
 export default function WeatherReport(props) {
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState(null);
   const [city, setCity] = useState("");
   const searchRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -85,7 +85,7 @@ export default function WeatherReport(props) {
       </form>
       {isLoading ? (
         <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
-      ) : city === "" ? null : (
+      ) : weatherData === null ? null : (
         <CitySearch weatherData={weatherData} />
       )}
     </div>
