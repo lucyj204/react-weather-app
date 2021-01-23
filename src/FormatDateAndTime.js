@@ -31,8 +31,14 @@ export default function FormatDateAndTime(props) {
     let day = days[props.dateAndTime.getDay()];
     let date = props.dateAndTime.getDate();
     let hours = props.dateAndTime.getHours();
+    if (hours < 10) {
+        hours = `0${hours}`
+    }
     let month = months[props.dateAndTime.getMonth()];
     let minutes = props.dateAndTime.getMinutes();
+    if (minutes <10) {
+        minutes = `0${minutes}`
+    }
 
     return (
       <div>

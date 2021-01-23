@@ -1,6 +1,7 @@
 import React from "react";
 import ForecastItem from "./ForecastItem";
 import FormatDateAndTime from "./FormatDateAndTime";
+import DisplayTemperature from "./DisplayTemperature";
 import ReactAnimatedWeather from "react-animated-weather";
 
 
@@ -24,7 +25,7 @@ function getWeatherIconFromOpenWeatherMapCode(code) {
     return "RAIN";
   }
   if (code === "11d" || "11n") {
-    return "WIND";
+    return "RAIN";
   }
   if (code === "13d" || code === "13n") {
     return "SNOW";
@@ -35,7 +36,6 @@ function getWeatherIconFromOpenWeatherMapCode(code) {
 }
 
 export default function CitySearch(props) {
-  const currentWeatherCode = "04d";
 console.log("CitySearch",props);
  
     return (
@@ -53,19 +53,12 @@ console.log("CitySearch",props);
             {/* <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" /> */}
   
             <ReactAnimatedWeather
-              icon={getWeatherIconFromOpenWeatherMapCode(currentWeatherCode)}
+              icon={getWeatherIconFromOpenWeatherMapCode(props.weatherData.weatherIconUrl)}
               color={"#52057b"}
               size={150}
             />
+            <DisplayTemperature temperatureCelsius={props.weatherData.temperatureCelsius}/>
           </span>
-          <span id="temperature-digits"> {props.weatherData.temperatureCelsius}</span>
-          <a href="url" className="active" id="celsius">
-            °C
-          </a>
-          <span className="temperature-divider">|</span>
-          <a href="url" id="fahrenheit">
-            °F
-          </a>
           <span id="weather-description">{props.weatherData.currentWeatherDescription}</span>
         </p>
         <hr />
@@ -89,7 +82,7 @@ console.log("CitySearch",props);
   
             <div className="col">
               <p className="min-max-temp">
-                Min: <span id="min-temp">{props.weatherData.temp_min}</span>°
+                Min: <span id="min-temp">{props.weatherData.temperatureMinCelsius}</span>°
                 <br />
                 Max: <span id="max-temp">{props.weatherData.temp_max}</span>°
               </p>

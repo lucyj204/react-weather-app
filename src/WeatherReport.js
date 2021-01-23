@@ -28,9 +28,10 @@ export default function WeatherReport(props) {
       currentWeatherDescription: response.data.weather[0].description,
       windSpeed: Math.round(response.data.wind.speed),
       humidity: Math.round(response.data.main.humidity),
-      temperatureMaxCelsius: response.data.main.temp_max,
-      temperatureMinCelsius: response.data.main.temp_min,
-      dateAndTime: new Date(response.data.dt * 1000)
+      temperatureMaxCelsius: Math.round(response.data.main.temp_max),
+      temperatureMinCelsius: Math.round(response.data.main.temp_min),
+      dateAndTime: new Date(response.data.dt * 1000),
+      weatherIconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     });
     setIsLoading(false);
   }
