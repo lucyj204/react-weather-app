@@ -24,14 +24,15 @@ export default function WeatherReport(props) {
 
     setWeatherData({
       currentCity: response.data.name,
+      currentCountry: response.data.sys.country,
       temperatureCelsius: Math.round(response.data.main.temp),
       currentWeatherDescription: response.data.weather[0].description,
       windSpeed: Math.round(response.data.wind.speed),
       humidity: Math.round(response.data.main.humidity),
       temperatureMaxCelsius: Math.round(response.data.main.temp_max),
       temperatureMinCelsius: Math.round(response.data.main.temp_min),
-      sunriseTime: response.data.sys.sunrise * 1000,
-      sunsetTime: response.data.sys.sunset * 1000,
+      sunriseTime: new Date(response.data.sys.sunrise * 1000),
+      sunsetTime: new Date(response.data.sys.sunset * 1000),
       dateAndTime: new Date(response.data.dt * 1000),
       weatherIcon: response.data.weather[0].icon
     });

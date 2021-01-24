@@ -86,7 +86,8 @@
 
 #current-weather-icon canvas {
   display: inline;
-  width: 20;
+  width: 50;
+  margin-top: 50px;
 }
 
 #temperature-digits {
@@ -94,7 +95,7 @@
   font-weight: 350;
   color: #52057b;
   vertical-align: middle;
-  margin-left: 10px;
+  text-align: center;
 }
 
 #weather-description {
