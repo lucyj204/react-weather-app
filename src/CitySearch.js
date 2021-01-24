@@ -17,8 +17,6 @@ export default function CitySearch(props) {
   }
 
   function handleOpenWeatherMapResponse(response, city) {
-   
-
     setWeatherData({
       currentCity: response.data.name,
       currentCountry: response.data.sys.country,
