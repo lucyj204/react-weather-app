@@ -39,16 +39,6 @@
   font-size: 300%;
 }
 
-.active {
-  font-weight: bold;
-  color: black;
-}
-
-.active:hover {
-  text-decoration: none;
-  cursor: default;
-  color: black;
-}
 
 .temperature-divider {
   font-size: 20px;
@@ -95,8 +85,8 @@
 }
 
 #current-weather-icon canvas {
-  vertical-align: middle;
-  /* width: 50%; */
+  display: inline;
+  width: 20;
 }
 
 #temperature-digits {
@@ -104,6 +94,7 @@
   font-weight: 350;
   color: #52057b;
   vertical-align: middle;
+  margin-left: 10px;
 }
 
 #weather-description {

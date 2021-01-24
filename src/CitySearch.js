@@ -2,38 +2,8 @@ import React from "react";
 import ForecastItem from "./ForecastItem";
 import FormatDateAndTime from "./FormatDateAndTime";
 import DisplayTemperature from "./DisplayTemperature";
-import ReactAnimatedWeather from "react-animated-weather";
+import UpdateWeatherIcon from "./UpdateWeatherIcon";
 
-
-function getWeatherIconFromOpenWeatherMapCode(code) {
-  if (code === "01d") {
-    return "CLEAR_DAY";
-  }
-  if (code === "01n") {
-    return "CLEAR_NIGHT";
-  }
-  if (code === "02d" || code === "04d") {
-    return "PARTLY_CLOUDY_DAY";
-  }
-  if (code === "02n" || code === "03n" || code === "04n") {
-    return "PARTLY_CLOUDY_NIGHT";
-  }
-  if (code === "03d") {
-    return "CLOUDY";
-  }
-  if (code === "09d" || code === "09n" || code === "10d" || code === "10n") {
-    return "RAIN";
-  }
-  if (code === "11d" || "11n") {
-    return "RAIN";
-  }
-  if (code === "13d" || code === "13n") {
-    return "SNOW";
-  }
-  if (code === "50d" || code === "50n") {
-    return "FOG";
-  }
-}
 
 export default function CitySearch(props) {
 console.log("CitySearch",props);
@@ -49,18 +19,20 @@ console.log("CitySearch",props);
           
         </p>
         <p className="current-weather">
-          <span id="current-weather-icon">
-            {/* <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" /> */}
+          <div className="row">
+          <div className="col" id="current-weather-icon">
+            <UpdateWeatherIcon iconCode={props.weatherData.weatherIcon}/>
   
-            <ReactAnimatedWeather
-              icon={getWeatherIconFromOpenWeatherMapCode(props.weatherData.weatherIconUrl)}
-              color={"#52057b"}
-              size={150}
-            />
+            
+            <div className="col">
             <DisplayTemperature temperatureCelsius={props.weatherData.temperatureCelsius}/>
-          </span>
-          <span id="weather-description">{props.weatherData.currentWeatherDescription}</span>
+            </div>
+          </div>
+          <div className="col" id="weather-description">{props.weatherData.currentWeatherDescription}</div>
+          
+          </div>
         </p>
+        
         <hr />
         <div className="container">
           <div className="row">
@@ -72,11 +44,11 @@ console.log("CitySearch",props);
               </p>
             </div>
   
-            <div className="col">
-              <p className="sunrise-sunset">
-                Sunrise: <span id="sunrise-time">07:59</span>
+            <div class="col">
+              <p class="sunrise-sunset">
+                Sunrise: {new Date(props.weatherData.sunriseTime).getHours()}: <span id="sunrise-time"></span>
                 <br />
-                Sunset: <span id="sunset-time">15:51</span>
+                Sunset: {new Date(props.weatherData.sunsetTime).getHours()} <span id="sunset-time"></span>
               </p>
             </div>
   
@@ -84,19 +56,14 @@ console.log("CitySearch",props);
               <p className="min-max-temp">
                 Min: <span id="min-temp">{props.weatherData.temperatureMinCelsius}</span>°
                 <br />
-                Max: <span id="max-temp">{props.weatherData.temp_max}</span>°
+                Max: <span id="max-temp">{props.weatherData.temperatureMaxCelsius}</span>°
               </p>
             </div>
           </div>
           <hr />
           <h3 className="forecast-heading">Forecast</h3>
           <div className="row" id="weather-forecast">
-            <ForecastItem />
-            <ForecastItem />
-            <ForecastItem />
-            <ForecastItem />
-            <ForecastItem />
-            <ForecastItem />
+            <ForecastItem city={props.weatherData.currentCity}/>
           </div>
         </div>
       </div>

@@ -30,8 +30,10 @@ export default function WeatherReport(props) {
       humidity: Math.round(response.data.main.humidity),
       temperatureMaxCelsius: Math.round(response.data.main.temp_max),
       temperatureMinCelsius: Math.round(response.data.main.temp_min),
+      sunriseTime: response.data.sys.sunrise * 1000,
+      sunsetTime: response.data.sys.sunset * 1000,
       dateAndTime: new Date(response.data.dt * 1000),
-      weatherIconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+      weatherIcon: response.data.weather[0].icon
     });
     setIsLoading(false);
   }
