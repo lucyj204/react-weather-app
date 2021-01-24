@@ -83,6 +83,7 @@ export default function ForecastItem(props) {
               <UpdateWeatherIcon iconCode={forecast.list[5].weather[0].icon}/>
             </p>
           </div>
+          
         </div>
       </div>
     );

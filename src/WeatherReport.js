@@ -1,4 +1,4 @@
-import React, { useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 import CitySearch from "./CitySearch";
 import axios from "axios";
@@ -10,6 +10,7 @@ export default function WeatherReport(props) {
   const searchRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const [currentlyLoadingCity, setCurrentlyLoadingCity] = useState("");
+  const [temperatureUnit, setTemperatureUnit] = useState("celsius");
 
   function handleError(err) {
     console.log("got an error", err);
@@ -25,16 +26,16 @@ export default function WeatherReport(props) {
     setWeatherData({
       currentCity: response.data.name,
       currentCountry: response.data.sys.country,
-      temperatureCelsius: Math.round(response.data.main.temp),
+      temperatureCelsius: response.data.main.temp,
       currentWeatherDescription: response.data.weather[0].description,
       windSpeed: Math.round(response.data.wind.speed),
       humidity: Math.round(response.data.main.humidity),
-      temperatureMaxCelsius: Math.round(response.data.main.temp_max),
-      temperatureMinCelsius: Math.round(response.data.main.temp_min),
+      temperatureMaxCelsius: response.data.main.temp_max,
+      temperatureMinCelsius: response.data.main.temp_min,
       sunriseTime: new Date(response.data.sys.sunrise * 1000),
       sunsetTime: new Date(response.data.sys.sunset * 1000),
       dateAndTime: new Date(response.data.dt * 1000),
-      weatherIcon: response.data.weather[0].icon
+      weatherIcon: response.data.weather[0].icon,
     });
     setIsLoading(false);
   }
@@ -60,7 +61,7 @@ export default function WeatherReport(props) {
     <div className="CitySearch">
       <form id="city-form" onSubmit={handleSubmit}>
         <div className="row">
-          <div className="col-6">
+          <div className="col-8">
             <input
               className="form-control"
               placeholder="Enter a City"
@@ -69,7 +70,7 @@ export default function WeatherReport(props) {
               ref={searchRef}
             />
           </div>
-          <div className="col-3">
+          <div className="col-4">
             <input
               className="form-control btn btn-secondary"
               type="submit"
@@ -77,20 +78,24 @@ export default function WeatherReport(props) {
               id="search-button"
             />
           </div>
-          <div className="col-3">
+          {/* <div className="col-3">
             <input
               className="form-control btn btn-light"
               type="submit"
               value="Current"
               id="current-city-button"
             />
-          </div>
+          </div> */}
         </div>
       </form>
       {isLoading ? (
         <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
       ) : weatherData === null ? null : (
-        <CitySearch weatherData={weatherData} />
+        <CitySearch
+          weatherData={weatherData}
+          temperatureUnit={temperatureUnit}
+          onTemperatureUnitChange={setTemperatureUnit}
+        />
       )}
     </div>
   );

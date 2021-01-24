@@ -9,6 +9,8 @@
 
 .forecast-heading {
   color: #52057b;
+  margin-bottom: 20px;
+  font-style: italic;
 }
 
 #weather-forecast {
@@ -16,7 +18,7 @@
   color: #52057b;
 }
 
-#weather-forecast img {
+#weather-forecast canvas {
   width: 70px;
 }
 
@@ -34,11 +36,6 @@
   font-size: 25px;
   color: #52057b;
 }
-
-.weather-icon {
-  font-size: 300%;
-}
-
 
 .temperature-divider {
   font-size: 20px;
@@ -68,12 +65,21 @@
   font-weight: 500;
 }
 
+.current-temperature {
+  font-size: 70px;
+  font-weight: 350;
+  color: #52057b;
+  vertical-align: middle;
+  margin-right: 60px;
+
+}
+
 .coded-by {
   text-align: center;
 }
 
 #celsius {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 #fahrenheit {
@@ -85,9 +91,10 @@
 }
 
 #current-weather-icon canvas {
+  vertical-align: middle;
   display: inline;
-  width: 50;
-  margin-top: 50px;
+  width: 70%;
+  margin-top: 30px;
 }
 
 #temperature-digits {
@@ -95,7 +102,8 @@
   font-weight: 350;
   color: #52057b;
   vertical-align: middle;
-  text-align: center;
+  margin-left: 10px;
+  display: inline;
 }
 
 #weather-description {
@@ -103,5 +111,8 @@
   color: #52057b;
   vertical-align: middle;
   padding-left: 30px;
-  font-size: 40px;
+  font-size: 50px;
+  margin-top:70px;
+  margin-right: 50px;
+  font-style: italic;
 }
