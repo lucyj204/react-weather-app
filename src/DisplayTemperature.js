@@ -4,70 +4,57 @@ function displayTemperatureDigits(temperatureCelsius, temperatureUnit) {
   let temperatureFahrenheit = (temperatureCelsius * 9) / 5 + 32;
   if (temperatureUnit === "celsius") {
     return Math.round(temperatureCelsius);
-  }
-  else {
+  } else {
     return Math.round(temperatureFahrenheit);
   }
 }
 
 export default function DisplayTemperature(props) {
-  function displayFahrenheitTemperature(event) {
+  function setTemperatureUnit(event, temperatureUnit) {
     event.preventDefault();
-    props.onTemperatureUnitChange("fahrenheit");
+    props.onTemperatureUnitChange(temperatureUnit);
   }
 
-  function displayCelsiusTemperature(event) {
-    event.preventDefault();
-    props.onTemperatureUnitChange("celsius");
+  function displayUnit(temperatureUnit) {
+    if (temperatureUnit === "celsius") {
+      return "°C";
+    } else {
+      return "°F";
+    }
   }
 
-
+  function unitClickable(temperatureUnit, currentTemperatureUnit) {
+    if (temperatureUnit === currentTemperatureUnit) {
+      return (
+        <span className="unit temperature-unit-clickable">
+          {displayUnit(temperatureUnit)}
+        </span>
+      );
+    } else {
+      return (
+        <a
+          href="#"
+          className="temperature-unit-clickable"
+          onClick={(event) => setTemperatureUnit(event, temperatureUnit)}
+        >
+          {displayUnit(temperatureUnit)}
+        </a>
+      );
+    }
+  }
 
   return (
     <div>
-      <span id="temperature-digits"> {displayTemperatureDigits(props.temperatureCelsius, props.temperatureUnit)}</span>
-      <span className="unit" id="celsius">
-        {" "}
-        °C
+      <span id="temperature-digits">
+        {displayTemperatureDigits(
+          props.temperatureCelsius,
+          props.temperatureUnit
+        )}
       </span>
+      {unitClickable("celsius", props.temperatureUnit)}
       <span className="temperature-divider"> | </span>
-      <a href="url" id="fahrenheit" onClick={displayFahrenheitTemperature}>
-        °F
-      </a>
+      {unitClickable("fahrenheit", props.temperatureUnit)}
     </div>
   );
 
-  if (props.temperatureUnit === "celsius") {
-    return (
-      <div>
-        <span id="temperature-digits"> {props.temperatureCelsius}</span>
-        <span className="unit" id="celsius">
-          {" "}
-          °C
-        </span>
-        <span className="temperature-divider"> | </span>
-        <a href="url" id="fahrenheit" onClick={displayFahrenheitTemperature}>
-          °F
-        </a>
-      </div>
-    );
-  } else {
-    let fahrenheit = (props.temperatureCelsius * 9) / 5 + 32;
-    return (
-      <div>
-        <span id="temperature-digits"> {Math.round(fahrenheit)}</span>
-        <a
-          href="url"
-          className="unit"
-          id="celsius"
-          onClick={displayCelsiusTemperature}
-        >
-          {" "}
-          °C
-        </a>
-        <span className="temperature-divider"> | </span>
-        <span id="fahrenheit">°F</span>
-      </div>
-    );
-  }
 }

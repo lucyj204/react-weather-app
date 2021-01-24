@@ -78,13 +78,10 @@
   text-align: center;
 }
 
-#celsius {
+.temperature-unit-clickable{
   font-size: 20px;
 }
 
-#fahrenheit {
-  font-size: 20px;
-}
 
 #current-city {
   text-transform: capitalize;
