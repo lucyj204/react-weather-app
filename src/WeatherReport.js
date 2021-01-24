@@ -7,33 +7,32 @@ import { displayTemperatureDigits } from "./utility";
 import WeatherIcon from "./WeatherIcon";
 
 export default function WeatherReport(props) {
-
   return (
-    <div id="weather-report">
+    <div className="weather-report">
       <h1 className="city">
-        <span id="current-city"></span> {props.weatherData.currentCity},
-        <span id="current-country"> {props.weatherData.currentCountry}</span>
+        <span className="current-city"></span> {props.weatherData.currentCity},
+        <span> {props.weatherData.currentCountry}</span>
       </h1>
-      <div className="current-date" id="current-date">
+      <div className="current-date">
         <CurrentDateAndTime dateAndTime={props.weatherData.dateAndTime} />
       </div>
       <div className="current-weather">
         <div className="container">
           <div className="row">
-            <div className="col" id="current-weather-icon">
+            <div className="col-3" className="current-weather-icon">
               <WeatherIcon iconCode={props.weatherData.weatherIcon} />
+            </div>
 
-              <div className="col">
-                <div className="current-temperature">
-                  <CurrentTemperature
-                    temperatureCelsius={props.weatherData.temperatureCelsius}
-                    temperatureUnit={props.temperatureUnit}
-                    onTemperatureUnitChange={props.onTemperatureUnitChange}
-                  />
-                </div>
+            <div className="col-5">
+              <div className="current-temperature">
+                <CurrentTemperature
+                  temperatureCelsius={props.weatherData.temperatureCelsius}
+                  temperatureUnit={props.temperatureUnit}
+                  onTemperatureUnitChange={props.onTemperatureUnitChange}
+                />
               </div>
             </div>
-            <div className="col" id="weather-description">
+            <div className="col-4 weather-description">
               {props.weatherData.currentWeatherDescription}
             </div>
           </div>
@@ -45,9 +44,9 @@ export default function WeatherReport(props) {
         <div className="row">
           <div className="col">
             <p className="weather-info">
-              Humidity: <span id="humidity">{props.weatherData.humidity}</span>
+              Humidity: <span >{props.weatherData.humidity}</span>%
               <br />
-              Wind: <span id="wind-speed">
+              Wind: <span>
                 {props.weatherData.windSpeed}
               </span>{" "}
               m/s
@@ -83,7 +82,7 @@ export default function WeatherReport(props) {
         </div>
         <hr />
         <h3 className="forecast-heading">Forecast</h3>
-        <div className="row" id="weather-forecast">
+        <div className="row" className="weather-forecast">
           <Forecast
             city={props.weatherData.currentCity}
             temperatureUnit={props.temperatureUnit}

@@ -34,7 +34,7 @@ export default function Forecast(props) {
     console.log(response.data);
   }
 
-  if (isLoaded) {
+  if (isLoaded && props.city === forecast.city.name) {
     return (
       <div className="ThreeHourForecast">
         <div className="row">

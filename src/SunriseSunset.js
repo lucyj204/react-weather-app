@@ -20,11 +20,11 @@ export default function SunriseSunset(props) {
 
   return (
     <div>
-      <span id="sunrise-time">
+      <span>
         Sunrise: {sunriseHours}:{sunriseMinutes}
       </span>
       <br />
-      <span id="sunset-time">
+      <span>
         Sunset: {sunsetHours}:{sunsetMinutes}
       </span>
     </div>

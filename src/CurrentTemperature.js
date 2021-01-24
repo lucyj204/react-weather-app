@@ -25,7 +25,7 @@ export default function CurrentTemperature(props) {
     } else {
       return (
         <a
-          href="#"
+          href="url"
           className="temperature-unit-clickable"
           onClick={(event) => setTemperatureUnit(event, temperatureUnit)}
         >
@@ -37,7 +37,7 @@ export default function CurrentTemperature(props) {
 
   return (
     <div>
-      <span id="temperature-digits">
+      <span className="temperature-digits">
         {displayTemperatureDigits(
           props.temperatureCelsius,
           props.temperatureUnit

@@ -53,7 +53,7 @@ export default function CitySearch(props) {
 
   return (
     <div className="CitySearch">
-      <form id="city-form" onSubmit={handleSubmit}>
+      <form className="city-form" onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-8">
             <input
@@ -66,7 +66,7 @@ export default function CitySearch(props) {
           </div>
           <div className="col-4">
             <input
-              className="form-control btn btn-secondary"
+              className="form-control btn btn-primary"
               type="submit"
               value="Search"
               id="search-button"
