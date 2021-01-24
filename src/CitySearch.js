@@ -83,7 +83,7 @@ export default function CitySearch(props) {
         </div>
       </form>
       {isLoading ? (
-        <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+        <Loader type="ThreeDots" color="#52057b" height={80} width={80} />
       ) : weatherData === null ? null : (
         <WeatherReport
           weatherData={weatherData}

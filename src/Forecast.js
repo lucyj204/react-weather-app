@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import WeatherIcon from "./WeatherIcon";
 import { displayTemperatureDigits } from "./utility";
+import Loader from "react-loader-spinner";
 import axios from "axios";
 import "./App.css";
 
@@ -31,7 +32,6 @@ export default function Forecast(props) {
   function handleForecastresponse(response) {
     setForecast(response.data);
     setIsLoaded(true);
-    console.log(response.data);
   }
 
   if (isLoaded && props.city === forecast.city.name) {
@@ -51,6 +51,6 @@ export default function Forecast(props) {
     let apiKey = "41c63daacbbca70e4cab465b3c854000";
     let url = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiKey}&units=metric`;
     axios.get(url).then(handleForecastresponse);
-    return null;
+    return <Loader type="ThreeDots" color="#52057b" height={80} width={80} />; 
   }
 }

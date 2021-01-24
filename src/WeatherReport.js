@@ -19,7 +19,7 @@ export default function WeatherReport(props) {
       <div className="current-weather">
         <div className="container">
           <div className="row">
-            <div className="col-3" className="current-weather-icon">
+            <div className="col-3 current-weather-icon">
               <WeatherIcon iconCode={props.weatherData.weatherIcon} />
             </div>
 
@@ -82,7 +82,7 @@ export default function WeatherReport(props) {
         </div>
         <hr />
         <h3 className="forecast-heading">Forecast</h3>
-        <div className="row" className="weather-forecast">
+        <div className="row weather-forecast">
           <Forecast
             city={props.weatherData.currentCity}
             temperatureUnit={props.temperatureUnit}
