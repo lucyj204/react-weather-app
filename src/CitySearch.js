@@ -1,12 +1,12 @@
 import React from "react";
-import ForecastItem from "./ForecastItem";
-import FormatDateAndTime from "./FormatDateAndTime";
-import FormatSunriseSunsetTime from "./FormatSunriseSunsetTime";
-import DisplayTemperature from "./DisplayTemperature";
-import UpdateWeatherIcon from "./UpdateWeatherIcon";
+import Forecast from "./Forecast";
+import CurrentDateAndTime from "./CurrentDateAndTime";
+import SunriseSunset from "./SunriseSunset";
+import CurrentTemperature from "./CurrentTemperature";
+import { displayTemperatureDigits } from "./utility";
+import WeatherIcon from "./WeatherIcon";
 
 export default function CitySearch(props) {
-  console.log("CitySearch", props);
 
   return (
     <div id="weather-report">
@@ -15,17 +15,17 @@ export default function CitySearch(props) {
         <span id="current-country"> {props.weatherData.currentCountry}</span>
       </h1>
       <div className="current-date" id="current-date">
-        <FormatDateAndTime dateAndTime={props.weatherData.dateAndTime} />
+        <CurrentDateAndTime dateAndTime={props.weatherData.dateAndTime} />
       </div>
       <div className="current-weather">
         <div className="container">
           <div className="row">
             <div className="col" id="current-weather-icon">
-              <UpdateWeatherIcon iconCode={props.weatherData.weatherIcon} />
+              <WeatherIcon iconCode={props.weatherData.weatherIcon} />
 
               <div className="col">
                 <div className="current-temperature">
-                  <DisplayTemperature
+                  <CurrentTemperature
                     temperatureCelsius={props.weatherData.temperatureCelsius}
                     temperatureUnit={props.temperatureUnit}
                     onTemperatureUnitChange={props.onTemperatureUnitChange}
@@ -56,7 +56,7 @@ export default function CitySearch(props) {
 
           <div className="col">
             <div className="sunrise-sunset">
-              <FormatSunriseSunsetTime
+              <SunriseSunset
                 sunriseTime={props.weatherData.sunriseTime}
                 sunsetTime={props.weatherData.sunsetTime}
               />
@@ -65,17 +65,26 @@ export default function CitySearch(props) {
 
           <div className="col">
             <p className="min-max-temp">
-              Min: {props.weatherData.temperatureMinCelsius}
+              Min:{" "}
+              {displayTemperatureDigits(
+                props.weatherData.temperatureMinCelsius,
+                props.temperatureUnit
+              )}
               °
               <br />
-              Max: {props.weatherData.temperatureMaxCelsius}°
+              Max:{" "}
+              {displayTemperatureDigits(
+                props.weatherData.temperatureMaxCelsius,
+                props.temperatureUnit
+              )}
+              °
             </p>
           </div>
         </div>
         <hr />
         <h3 className="forecast-heading">Forecast</h3>
         <div className="row" id="weather-forecast">
-          <ForecastItem
+          <Forecast
             city={props.weatherData.currentCity}
             temperatureUnit={props.temperatureUnit}
           />

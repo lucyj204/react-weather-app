@@ -1,15 +1,7 @@
 import React from "react";
+import { displayTemperatureDigits } from "./utility";
 
-function displayTemperatureDigits(temperatureCelsius, temperatureUnit) {
-  let temperatureFahrenheit = (temperatureCelsius * 9) / 5 + 32;
-  if (temperatureUnit === "celsius") {
-    return Math.round(temperatureCelsius);
-  } else {
-    return Math.round(temperatureFahrenheit);
-  }
-}
-
-export default function DisplayTemperature(props) {
+export default function CurrentTemperature(props) {
   function setTemperatureUnit(event, temperatureUnit) {
     event.preventDefault();
     props.onTemperatureUnitChange(temperatureUnit);
@@ -56,5 +48,4 @@ export default function DisplayTemperature(props) {
       {unitClickable("fahrenheit", props.temperatureUnit)}
     </div>
   );
-
 }

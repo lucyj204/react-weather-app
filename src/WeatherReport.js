@@ -17,11 +17,7 @@ export default function WeatherReport(props) {
   }
 
   function handleOpenWeatherMapResponse(response, city) {
-    // if (city !== currentlyLoadingCity) {
-    //   console.log("ignore", {city, currentlyLoadingCity});
-    //   //ignore this response because the user changed the city
-    //   return;
-    // }
+   
 
     setWeatherData({
       currentCity: response.data.name,

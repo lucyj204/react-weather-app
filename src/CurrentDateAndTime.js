@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function FormatDateAndTime(props) {
+export default function CurrentDateAndTime(props) {
   console.log(props.dateAndTime);
   if (props.dateAndTime === undefined) {
     return null;
