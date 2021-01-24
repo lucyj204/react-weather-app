@@ -1,13 +1,13 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import WeatherReport from "./WeatherReport";
+import CitySearch from "./CitySearch";
 
 export default function App() {
   return (
     <div>
       <div className="WeatherAppProject">
-        <WeatherReport/>
+        <CitySearch/>
       </div>
       <p className="coded-by">
         <a href="https://github.com/lucyj204/react-weather-app">
